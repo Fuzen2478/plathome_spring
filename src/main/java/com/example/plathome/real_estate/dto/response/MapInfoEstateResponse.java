@@ -18,7 +18,8 @@ public record MapInfoEstateResponse(
         double squareFeet,
         int deposit,
         int maintenanceFee,
-        int monthlyRent
+        int monthlyRent,
+        String location
 ) {
 
     public static MapInfoEstateResponseBuilder of() {
@@ -37,6 +38,8 @@ public record MapInfoEstateResponse(
                 .squareFeet(entity.getSquareFeet())
                 .deposit(entity.getDeposit())
                 .maintenanceFee(entity.getMaintenanceFee())
-                .monthlyRent(entity.getMonthlyRent()).build();
+                .monthlyRent(entity.getMonthlyRent())
+                .location(entity.getLocation())
+                .build();
     }
 }
