@@ -16,8 +16,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RequiredArgsConstructor
 @RequestMapping("/api/jwt")
+@RequiredArgsConstructor
 @RestController
 public class LoginController {
 

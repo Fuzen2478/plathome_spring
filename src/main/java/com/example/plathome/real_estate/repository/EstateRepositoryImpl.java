@@ -30,21 +30,22 @@ public class EstateRepositoryImpl implements EstateRepositoryCustom{
          BooleanExpression depositFilter = null;
          BooleanExpression floorFilter = null;
          BooleanExpression monthlyFeeFilter = null;
+         BooleanExpression maintenanceFeeFilter = null;
          BooleanExpression rentTypeFilter = null;
          BooleanExpression roomSizeFilter = null;
          BooleanExpression roomTypeFilter = null;
          BooleanExpression optionFilter = null;
 
-        areaFilter = chainBooleanExpression(areaFilter, gwanggyo(filter.area().gwanggyo()));
-        areaFilter = chainBooleanExpression(areaFilter, ingyedong(filter.area().gwanggyo()));
-        areaFilter = chainBooleanExpression(areaFilter, uman(filter.area().uman()));
-        areaFilter = chainBooleanExpression(areaFilter, woncheon(filter.area().woncheon()));
-        areaFilter = chainBooleanExpression(areaFilter, maetan(filter.area().maetan()));
+        areaFilter = chainBooleanExpression(areaFilter, gwanggyo(filter.Area().gwanggyo()));
+        areaFilter = chainBooleanExpression(areaFilter, ingyedong(filter.Area().gwanggyo()));
+        areaFilter = chainBooleanExpression(areaFilter, uman(filter.Area().uman()));
+        areaFilter = chainBooleanExpression(areaFilter, woncheon(filter.Area().woncheon()));
+        areaFilter = chainBooleanExpression(areaFilter, maetan(filter.Area().maetan()));
 
-        System.out.println( areaFilter);
+        System.out.println(areaFilter);
 
         depositFilter = chainBooleanExpression(depositFilter,
-                depositBetween(filter.deposit().min(), filter.deposit().max()));
+                depositBetween(filter.Deposit().min(), filter.Deposit().max()));
 
         floorFilter = chainBooleanExpression(floorFilter, first(filter.floor().first()));
         floorFilter = chainBooleanExpression(floorFilter, second(filter.floor().second()));
@@ -57,18 +58,20 @@ public class EstateRepositoryImpl implements EstateRepositoryCustom{
         floorFilter = chainBooleanExpression(floorFilter, under(filter.floor().under()));
 
         monthlyFeeFilter = chainBooleanExpression(monthlyFeeFilter,
-                monthlyFeeBetween(filter.monthlyFee().min(), filter.monthlyFee().max()));
+                monthlyFeeBetween(filter.MonthlyFee().min(), filter.MonthlyFee().max()));
 
-        rentTypeFilter = chainBooleanExpression(rentTypeFilter, monthly(filter.rentType().monthly()));
-        rentTypeFilter = chainBooleanExpression(rentTypeFilter, jeonse(filter.rentType().jeonse()));
+        maintenanceFeeFilter = chainBooleanExpression(maintenanceFeeFilter, maintenanceFeeBetween(filter.MaintenanceFee().min(), filter.MaintenanceFee().max()));
+
+        rentTypeFilter = chainBooleanExpression(rentTypeFilter, monthly(filter.RentType().monthly()));
+        rentTypeFilter = chainBooleanExpression(rentTypeFilter, jeonse(filter.RentType().jeonse()));
 
         roomSizeFilter = chainBooleanExpression(roomSizeFilter,
-                roomSizeBetween(filter.roomSize().min(), filter.roomSize().max()));
+                roomSizeBetween(filter.RoomSize().min(), filter.RoomSize().max()));
 
-        roomTypeFilter = chainBooleanExpression(roomTypeFilter, studio(filter.roomType().studio()));
-        roomTypeFilter = chainBooleanExpression(roomTypeFilter, twoThreeRoom(filter.roomType().two_threeRoom()));
-        roomTypeFilter = chainBooleanExpression(roomTypeFilter, officetel(filter.roomType().officetel()));
-        roomTypeFilter = chainBooleanExpression(roomTypeFilter, apartment(filter.roomType().apartment()));
+        roomTypeFilter = chainBooleanExpression(roomTypeFilter, studio(filter.RoomType().studio()));
+        roomTypeFilter = chainBooleanExpression(roomTypeFilter, twoThreeRoom(filter.RoomType().two_threeRoom()));
+        roomTypeFilter = chainBooleanExpression(roomTypeFilter, officetel(filter.RoomType().officetel()));
+        roomTypeFilter = chainBooleanExpression(roomTypeFilter, apartment(filter.RoomType().apartment()));
 
         optionFilter = chainBooleanExpression(optionFilter, elevator(filter.option().elevator()));
         optionFilter = chainBooleanExpression(optionFilter, park(filter.option().park()));
@@ -105,6 +108,7 @@ public class EstateRepositoryImpl implements EstateRepositoryCustom{
                         depositFilter,
                         floorFilter,
                         monthlyFeeFilter,
+                        maintenanceFeeFilter,
                         rentTypeFilter,
                         roomSizeFilter,
                         roomTypeFilter,
@@ -205,6 +209,19 @@ public class EstateRepositoryImpl implements EstateRepositoryCustom{
 
     private BooleanExpression monthlyFeeGoe(Integer monthlyFeeGoe) {
         return monthlyFeeGoe != null ? estate.monthlyRent.goe(monthlyFeeGoe) : null;
+    }
+
+    /** maintenanaceFee */
+    private BooleanExpression maintenanceFeeBetween(Integer maintenanceFeeGoe, Integer maintenanceFeeLoe) {
+        return maintenanceFeeLoe(maintenanceFeeLoe).and(maintenanceFeeGoe(maintenanceFeeGoe));
+    }
+
+    private BooleanExpression maintenanceFeeLoe(Integer maintenanceFeeLoe) {
+        return maintenanceFeeLoe != null ?  estate.maintenanceFee.loe(maintenanceFeeLoe): null;
+    }
+
+    private BooleanExpression maintenanceFeeGoe(Integer maintenanceFeeGoe) {
+        return maintenanceFeeGoe != null ? estate.maintenanceFee.goe(maintenanceFeeGoe) : null;
     }
 
     /** renType */

@@ -5,12 +5,13 @@ import lombok.Builder;
 
 @Builder
 public record Filter(
-        AreaFilter area,
-        RoomTypeFilter roomType,
-        RentTypeFilter rentType,
-        DepositFilter deposit,
-        MonthlyFeeFilter monthlyFee,
-        RoomSizeFilter roomSize,
+        AreaFilter Area,
+        RoomTypeFilter RoomType,
+        RentTypeFilter RentType,
+        DepositFilter Deposit,
+        MonthlyFeeFilter MonthlyFee,
+        MaintenanceFeeFilter MaintenanceFee,
+        RoomSizeFilter RoomSize,
         FloorFilter floor,
         OptionFilter option
 ) {

@@ -1,4 +1,4 @@
-package com.example.plathome.estate.real.dto.search.filter;
+package com.example.plathome.real_estate.dto.search.filter;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
