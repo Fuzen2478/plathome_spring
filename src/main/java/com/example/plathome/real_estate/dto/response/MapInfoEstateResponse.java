@@ -1,13 +1,24 @@
 package com.example.plathome.real_estate.dto.response;
 
+import com.example.plathome.global.domain.estate.common.Floor;
+import com.example.plathome.global.domain.estate.common.RentalType;
+import com.example.plathome.global.domain.estate.common.RoomType;
 import com.example.plathome.real_estate.domain.Estate;
 import lombok.Builder;
 
 @Builder
 public record MapInfoEstateResponse(
-        long memberId,
+        long estateId,
         double lng,
-        double lat
+        double lat,
+        RoomType roomType,
+        RentalType rentalType,
+        String thumbNailUrl,
+        Floor floor,
+        double squareFeet,
+        int deposit,
+        int maintenanceFee,
+        int monthlyRent
 ) {
 
     public static MapInfoEstateResponseBuilder of() {
@@ -16,8 +27,16 @@ public record MapInfoEstateResponse(
 
     public static MapInfoEstateResponse from(Estate entity) {
         return MapInfoEstateResponse.of()
-                .memberId(entity.getMemberId())
+                .estateId(entity.getId())
                 .lng(entity.getLng())
-                .lat(entity.getLat()).build();
+                .lat(entity.getLat())
+                .roomType(entity.getRoomType())
+                .rentalType(entity.getRentalType())
+                .thumbNailUrl(entity.getThumbNailUrl())
+                .floor(entity.getFloor())
+                .squareFeet(entity.getSquareFeet())
+                .deposit(entity.getDeposit())
+                .maintenanceFee(entity.getMaintenanceFee())
+                .monthlyRent(entity.getMonthlyRent()).build();
     }
 }

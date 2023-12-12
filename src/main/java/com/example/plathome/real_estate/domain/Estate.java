@@ -60,7 +60,7 @@ public class Estate extends AuditingFields{
     private int monthlyRent;
 
     @Builder
-    public Estate(Long memberId, String location, Area area, RoomType roomType, RentalType rentalType, Floor floor, String contractUrl, String context, String thumbNailUrl, LocalDate contractTerm, Option option, double squareFeet, double lng, double lat, int deposit, int maintenanceFee, int monthlyRent) {
+    public Estate(Long estateId, Long memberId, String location, Area area, RoomType roomType, RentalType rentalType, Floor floor, String contractUrl, String context, String thumbNailUrl, LocalDate contractTerm, Option option, double squareFeet, double lng, double lat, int deposit, int maintenanceFee, int monthlyRent) {
         this.memberId = memberId;
         this.location = location;
         this.area = area;
@@ -78,6 +78,7 @@ public class Estate extends AuditingFields{
         this.deposit = deposit;
         this.maintenanceFee = maintenanceFee;
         this.monthlyRent = monthlyRent;
+        this.id = estateId;
     }
 
     public void update(String context, LocalDate contractTerm, Option option, double squareFeet, int deposit, int maintenanceFee, int monthlyRent) {

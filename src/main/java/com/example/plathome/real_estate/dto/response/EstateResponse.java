@@ -26,7 +26,11 @@ public record EstateResponse(
         double squareFeet,
         int deposit,
         int maintenanceFee,
-        int monthlyRent
+        int monthlyRent,
+
+        double lat,
+
+        double lng
 ) {
 
     public static EstateResponseBuilder of() {
@@ -48,6 +52,9 @@ public record EstateResponse(
                 .squareFeet(entity.getSquareFeet())
                 .deposit(entity.getDeposit())
                 .maintenanceFee(entity.getMaintenanceFee())
-                .monthlyRent(entity.getMonthlyRent()).build();
+                .monthlyRent(entity.getMonthlyRent())
+                .lat(entity.getLat())
+                .lng(entity.getLng())
+                .build();
     }
 }
