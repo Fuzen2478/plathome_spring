@@ -27,10 +27,9 @@ public record EstateResponse(
         int deposit,
         int maintenanceFee,
         int monthlyRent,
-
         double lat,
-
-        double lng
+        double lng,
+        long estateId
 ) {
 
     public static EstateResponseBuilder of() {
@@ -55,6 +54,7 @@ public record EstateResponse(
                 .monthlyRent(entity.getMonthlyRent())
                 .lat(entity.getLat())
                 .lng(entity.getLng())
+                .estateId(entity.getId())
                 .build();
     }
 }
