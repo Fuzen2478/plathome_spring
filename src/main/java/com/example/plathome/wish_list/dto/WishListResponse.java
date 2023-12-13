@@ -24,7 +24,8 @@ public record WishListResponse(
         double squareFeet,
         int deposit,
         int maintenanceFee,
-        int monthlyRent
+        int monthlyRent,
+        long estateId
 ) {
 
     public static WishListResponseBuilder of() {
@@ -45,6 +46,8 @@ public record WishListResponse(
                 .squareFeet(entity.getSquareFeet())
                 .deposit(entity.getDeposit())
                 .maintenanceFee(entity.getMaintenanceFee())
-                .monthlyRent(entity.getMonthlyRent()).build();
+                .monthlyRent(entity.getMonthlyRent())
+                .estateId(entity.getId())
+                .build();
     }
 }
